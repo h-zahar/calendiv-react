@@ -9,9 +9,9 @@ const Calendar = () => {
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(7, 1fr)",
-        height: "160px",
+        height: "190px",
         // margin: "50px 200px",
-        width: "160px",
+        minWidth: "190px",
         margin: "60px 30px auto 30px",
       }}
     >
@@ -34,9 +34,10 @@ const Calendar = () => {
                     color: "#70757a",
                     fontSize: "11px",
                     textTransform: "uppercase",
+                    marginBottom: "18px",
                   }}
                 >
-                  {days[i][0]} <br /> <br />
+                  {days[i][0]}
                 </div>
               )}
               {t}

@@ -16,13 +16,14 @@ const MonthlyView = () => {
         minWidth: "380px",
         width: "1400px",
         // border: "1px solid black",
+        border: "0.5px solid #dadce0",
       }}
     >
       {test.map((t, i) => {
         return (
           <div
             style={{
-              border: "1px solid #dadce0",
+              border: "0.5px solid #dadce0",
               display: "flex",
               justifyContent: "center",
               paddingTop: "20px",
