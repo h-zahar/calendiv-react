@@ -53,10 +53,17 @@ const Calendar = ({
 
   return (
     <div
-      style={{
-        minWidth: "190px",
-        borderTop: "1px solid #dadce0",
-      }}
+      style={
+        isCalendar
+          ? {
+              borderTop: "1px solid #dadce0",
+            }
+          : {
+              // margin: "50px 200px",
+              minWidth: "380px",
+              width: "1400px",
+            }
+      }
     >
       {isCalendar && (
         <div
@@ -64,6 +71,7 @@ const Calendar = ({
             padding: "50px 30px 10px 20px",
             display: "flex",
             justifyContent: "space-between",
+            minWidth: "190px",
           }}
         >
           {format(viewDate, "MMMM yyyy")}
@@ -114,13 +122,11 @@ const Calendar = ({
             : {
                 display: "grid",
                 gridTemplateColumns: "repeat(7, 1fr)",
-                minHeight: "700px",
-                height: "850px",
-                // margin: "50px 200px",
-                minWidth: "380px",
-                width: "1400px",
+
                 // border: "1px solid black",
                 border: "0.5px solid #dadce0",
+                minHeight: "700px",
+                height: "850px",
               }
         }
       >
