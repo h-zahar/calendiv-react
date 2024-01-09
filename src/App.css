@@ -1,3 +1,13 @@
 .date-div:hover {
   background: #e8f0fe;
 }
+
+.curr-date-div {
+  background: #1a73e8;
+  color: white;
+}
+
+.curr-date-div:hover {
+  background: #0463e0;
+  color: white;
+}
