@@ -16,11 +16,11 @@ import {
 const Calendar = ({
   viewDate,
   setViewData,
-  isCalendar = true,
+  isCalendarView = true,
 }: {
   viewDate: Date;
   setViewData: (date: Date) => void;
-  isCalendar: boolean;
+  isCalendarView: boolean;
 }) => {
   // const test = Array(35)
   //   .fill(1)
@@ -54,7 +54,7 @@ const Calendar = ({
   return (
     <div
       style={
-        isCalendar
+        isCalendarView
           ? {
               borderTop: "1px solid #dadce0",
             }
@@ -65,7 +65,7 @@ const Calendar = ({
             }
       }
     >
-      {isCalendar && (
+      {isCalendarView && (
         <div
           style={{
             padding: "50px 30px 10px 20px",
@@ -111,7 +111,7 @@ const Calendar = ({
 
       <div
         style={
-          isCalendar
+          isCalendarView
             ? {
                 display: "grid",
                 gridTemplateColumns: "repeat(7, 1fr)",
@@ -134,7 +134,7 @@ const Calendar = ({
           return (
             <div
               style={
-                isCalendar
+                isCalendarView
                   ? {
                       //   border: "1px solid #dadce0",
                       //   display: "flex",
@@ -168,8 +168,8 @@ const Calendar = ({
                 )}
                 <div
                   style={{
-                    width: isCalendar ? 25 : 35,
-                    height: isCalendar ? 25 : 35,
+                    width: isCalendarView ? 25 : 35,
+                    height: isCalendarView ? 25 : 35,
                     borderRadius: "50%",
                     cursor: "pointer",
                     display: "flex",
@@ -186,7 +186,7 @@ const Calendar = ({
                   }
                 >
                   {t}
-                  {!isCalendar &&
+                  {!isCalendarView &&
                     t === 1 &&
                     (i < 7
                       ? " " +

@@ -12,12 +12,12 @@ function App() {
         <Calendar
           viewDate={viewDate}
           setViewData={setViewDate}
-          isCalendar={true}
+          isCalendarView={true}
         />
         <Calendar
           viewDate={viewDate}
           setViewData={setViewDate}
-          isCalendar={false}
+          isCalendarView={false}
         />
       </div>
     </div>
