@@ -7,6 +7,7 @@ import {
   getDay,
   getDaysInMonth,
   getMonth,
+  getYear,
   startOfMonth,
   subDays,
   subMonths,
@@ -15,9 +16,11 @@ import {
 const Calendar = ({
   viewDate,
   setViewData,
+  isCalendar = true,
 }: {
   viewDate: Date;
   setViewData: (date: Date) => void;
+  isCalendar: boolean;
 }) => {
   // const test = Array(35)
   //   .fill(1)
@@ -55,66 +58,94 @@ const Calendar = ({
         borderTop: "1px solid #dadce0",
       }}
     >
-      <div
-        style={{
-          padding: "50px 30px 10px 20px",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        {format(viewDate, "MMMM yyyy")}
-        <div>
-          <button
-            onClick={() => setViewData(subMonths(viewDate, 1))}
-            style={{
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
-            }}
-          >
-            {/* <p
+      {isCalendar && (
+        <div
+          style={{
+            padding: "50px 30px 10px 20px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          {format(viewDate, "MMMM yyyy")}
+          <div>
+            <button
+              onClick={() => setViewData(subMonths(viewDate, 1))}
               style={{
-                padding: "15px",
-                border: "1px solid black",
-                borderRadius: "5px",
+                border: "none",
+                background: "transparent",
+                cursor: "pointer",
               }}
-            > */}
-            {"<"}
-            {/* </p> */}
-          </button>
+            >
+              {/* <p
+                  style={{
+                    padding: "15px",
+                    border: "1px solid black",
+                    borderRadius: "5px",
+                  }}
+                > */}
+              {"<"}
+              {/* </p> */}
+            </button>
 
-          <button
-            onClick={() => setViewData(addMonths(viewDate, 1))}
-            style={{
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
-            }}
-          >
-            {">"}
-          </button>
+            <button
+              onClick={() => setViewData(addMonths(viewDate, 1))}
+              style={{
+                border: "none",
+                background: "transparent",
+                cursor: "pointer",
+              }}
+            >
+              {">"}
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(7, 1fr)",
-          height: "190px",
-          // margin: "50px 200px",
-          padding: "10px 30px 0 20px",
-        }}
+        style={
+          isCalendar
+            ? {
+                display: "grid",
+                gridTemplateColumns: "repeat(7, 1fr)",
+                height: "190px",
+                // margin: "50px 200px",
+                padding: "10px 30px 0 20px",
+              }
+            : {
+                display: "grid",
+                gridTemplateColumns: "repeat(7, 1fr)",
+                minHeight: "700px",
+                height: "850px",
+                // margin: "50px 200px",
+                minWidth: "380px",
+                width: "1400px",
+                // border: "1px solid black",
+                border: "0.5px solid #dadce0",
+              }
+        }
       >
         {dates.map((t, i) => {
           return (
             <div
-              style={{
-                //   border: "1px solid #dadce0",
-                //   display: "flex",
-                justifyContent: "center",
-                paddingTop: "5px",
-                textAlign: "center",
-                fontSize: "10px",
-              }}
+              style={
+                isCalendar
+                  ? {
+                      //   border: "1px solid #dadce0",
+                      //   display: "flex",
+                      justifyContent: "center",
+                      paddingTop: "5px",
+                      textAlign: "center",
+                      fontSize: "10px",
+                    }
+                  : {
+                      border: "0.5px solid #dadce0",
+                      display: "flex",
+                      justifyContent: "center",
+                      paddingTop: "20px",
+                      textAlign: "center",
+                      fontSize: "11px",
+                    }
+              }
             >
               <div>
                 {i < 7 && (
@@ -131,8 +162,8 @@ const Calendar = ({
                 )}
                 <div
                   style={{
-                    width: 25,
-                    height: 25,
+                    width: isCalendar ? 25 : 35,
+                    height: isCalendar ? 25 : 35,
                     borderRadius: "50%",
                     cursor: "pointer",
                     display: "flex",
@@ -149,6 +180,22 @@ const Calendar = ({
                   }
                 >
                   {t}
+                  {!isCalendar &&
+                    t === 1 &&
+                    (i < 7
+                      ? " " +
+                        format(
+                          new Date(getYear(viewDate), getMonth(viewDate)),
+                          "MMM"
+                        )
+                      : " " +
+                        format(
+                          new Date(
+                            getYear(viewDate),
+                            getMonth(addMonths(viewDate, 1))
+                          ),
+                          "MMM"
+                        ))}
                 </div>
               </div>
             </div>
