@@ -8,26 +8,26 @@ import {
   subDays,
 } from "date-fns";
 
-const Calendar = () => {
+const Calendar = ({ viewDate }: { viewDate: Date }) => {
   // const test = Array(35)
   //   .fill(1)
   //   .map((t, i) => t * i + 1);
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const dates = Array(getDaysInMonth(new Date()))
+  const dates = Array(getDaysInMonth(viewDate))
     .fill(1)
     .map((t, i) => t * i + 1);
 
-  const numOfPrevDays = Array(getDay(startOfMonth(new Date()))).fill(1);
+  const numOfPrevDays = Array(getDay(startOfMonth(viewDate))).fill(1);
   const prevDays = numOfPrevDays.map((d, i) =>
-    getDate(subDays(startOfMonth(new Date()), numOfPrevDays.length - i))
+    getDate(subDays(startOfMonth(viewDate), d * (numOfPrevDays.length - i)))
   );
   dates.unshift(...prevDays);
 
   // if (arr.length < 35) {
-  const numOfNextDays = Array(6 - getDay(endOfMonth(new Date()))).fill(1);
+  const numOfNextDays = Array(6 - getDay(endOfMonth(viewDate))).fill(1);
   const nextDays = numOfNextDays.map((d, i) =>
-    getDate(addDays(startOfMonth(new Date()), d * i))
+    getDate(addDays(startOfMonth(viewDate), d * i))
   );
   // }
   dates.push(...nextDays);
