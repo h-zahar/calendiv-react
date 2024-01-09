@@ -34,7 +34,7 @@ const Header = ({
           >
             <p
               style={{
-                padding: "15px",
+                padding: "10px",
                 border: "1px solid black",
                 borderRadius: "5px",
               }}
