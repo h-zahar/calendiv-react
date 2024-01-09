@@ -72,7 +72,20 @@ const Calendar = () => {
                   {days[i][0]}
                 </div>
               )}
-              {t}
+              <div
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                className="date-div"
+              >
+                {t}
+              </div>
             </div>
           </div>
         );

@@ -64,7 +64,11 @@ const MonthlyView = () => {
               textAlign: "center",
             }}
           >
-            <div style={{ fontSize: "12px" }}>
+            <div
+              style={{
+                fontSize: "12px",
+              }}
+            >
               {i < 7 && (
                 <div
                   style={{
@@ -76,20 +80,33 @@ const MonthlyView = () => {
                   {days[i]} <br /> <br />
                 </div>
               )}
-              {t}{" "}
-              {t === 1 &&
-                (i < 7
-                  ? format(
-                      new Date(getYear(new Date()), getMonth(new Date())),
-                      "MMM"
-                    )
-                  : format(
-                      new Date(
-                        getYear(new Date()),
-                        getMonth(addMonths(new Date(), 1))
-                      ),
-                      "MMM"
-                    ))}
+              <div
+                style={{
+                  width: 35,
+                  height: 35,
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                className="date-div"
+              >
+                {t}{" "}
+                {t === 1 &&
+                  (i < 7
+                    ? format(
+                        new Date(getYear(new Date()), getMonth(new Date())),
+                        "MMM"
+                      )
+                    : format(
+                        new Date(
+                          getYear(new Date()),
+                          getMonth(addMonths(new Date(), 1))
+                        ),
+                        "MMM"
+                      ))}
+              </div>
             </div>
           </div>
         );

@@ -1,5 +1,6 @@
 import Calendar from "./components/Calendar";
 import MonthlyView from "./components/MonthlyView";
+import "./App.css";
 
 function App() {
   return (
