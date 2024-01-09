@@ -160,10 +160,10 @@ const Calendar = ({
                       color: "#70757a",
                       fontSize: "11px",
                       textTransform: "uppercase",
-                      marginBottom: "18px",
+                      marginBottom: isCalendarView ? "18px" : "0px",
                     }}
                   >
-                    {days[i][0]}
+                    {isCalendarView ? days[i][0] : days[i]}
                   </div>
                 )}
                 <div
