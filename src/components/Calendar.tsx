@@ -149,7 +149,7 @@ const Calendar = ({
                       justifyContent: "center",
                       paddingTop: "20px",
                       textAlign: "center",
-                      fontSize: "11px",
+                      fontSize: "12px",
                     }
               }
             >
