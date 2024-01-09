@@ -10,7 +10,7 @@ function App() {
     <div>
       <Header viewDate={viewDate} setViewData={setViewDate} />
       <div style={{ display: "flex", width: "100%" }}>
-        <Calendar viewDate={viewDate} />
+        <Calendar viewDate={viewDate} setViewData={setViewDate} />
         <MonthlyView viewDate={viewDate} />
       </div>
     </div>

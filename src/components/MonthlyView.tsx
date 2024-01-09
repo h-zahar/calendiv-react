@@ -24,8 +24,9 @@ const MonthlyView = ({ viewDate }: { viewDate: Date }) => {
 
   const numOfPrevDays = Array(getDay(startOfMonth(viewDate))).fill(1);
   const prevDays = numOfPrevDays.map((d, i) =>
-    getDate(subDays(startOfMonth(viewDate), numOfPrevDays.length - i))
+    getDate(subDays(startOfMonth(viewDate), d * (numOfPrevDays.length - i)))
   );
+  const prevRange = [0, prevDays.length - 1];
   dates.unshift(...prevDays);
 
   // if (arr.length < 35) {
@@ -34,6 +35,7 @@ const MonthlyView = ({ viewDate }: { viewDate: Date }) => {
     getDate(addDays(startOfMonth(viewDate), d * i))
   );
   // }
+  const nextRange = [dates.length, dates.length + nextDays.length];
   dates.push(...nextDays);
 
   // console.log(getDay(startOfMonth(new Date())));
@@ -90,7 +92,14 @@ const MonthlyView = ({ viewDate }: { viewDate: Date }) => {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                className="date-div"
+                className={
+                  getMonth(new Date()) === getMonth(viewDate) &&
+                  t === getDate(new Date()) &&
+                  i > prevRange[0] &&
+                  i < nextRange[0]
+                    ? "curr-date-div"
+                    : "date-div"
+                }
               >
                 {t}{" "}
                 {t === 1 &&
