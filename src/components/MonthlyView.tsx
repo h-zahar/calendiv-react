@@ -1,9 +1,13 @@
 import {
   addDays,
+  addMonths,
   endOfMonth,
+  format,
   getDate,
   getDay,
   getDaysInMonth,
+  getMonth,
+  getYear,
   startOfMonth,
   subDays,
 } from "date-fns";
@@ -72,7 +76,20 @@ const MonthlyView = () => {
                   {days[i]} <br /> <br />
                 </div>
               )}
-              {t}
+              {t}{" "}
+              {t === 1 &&
+                (i < 7
+                  ? format(
+                      new Date(getYear(new Date()), getMonth(new Date())),
+                      "MMM"
+                    )
+                  : format(
+                      new Date(
+                        getYear(new Date()),
+                        getMonth(addMonths(new Date(), 1))
+                      ),
+                      "MMM"
+                    ))}
             </div>
           </div>
         );
