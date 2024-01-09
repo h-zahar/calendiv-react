@@ -44,7 +44,8 @@ const Calendar = ({ viewDate }: { viewDate: Date }) => {
         height: "190px",
         // margin: "50px 200px",
         minWidth: "190px",
-        margin: "60px 30px auto 30px",
+        borderTop: "1px solid #dadce0",
+        padding: "60px 30px 0 20px",
       }}
     >
       {dates.map((t, i) => {
