@@ -61,7 +61,7 @@ const Calendar = ({
           : {
               // margin: "50px 200px",
               minWidth: "380px",
-              width: "1400px",
+              width: "100%",
             }
       }
     >
@@ -125,8 +125,9 @@ const Calendar = ({
 
                 // border: "1px solid black",
                 border: "0.5px solid #dadce0",
-                minHeight: "700px",
-                height: "850px",
+                // minHeight: "700px",
+                // height: "850px",
+                height: "100%",
               }
         }
       >
