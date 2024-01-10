@@ -7,8 +7,10 @@ function App() {
   const [viewDate, setViewDate] = useState(new Date());
   return (
     <div style={{ height: "100vh" }}>
-      <Header viewDate={viewDate} setViewData={setViewDate} />
-      <div style={{ display: "flex", width: "100%", height: "90.5%" }}>
+      <div style={{ height: "12%" }}>
+        <Header viewDate={viewDate} setViewData={setViewDate} />
+      </div>
+      <div style={{ display: "flex", width: "100%", height: "88%" }}>
         <Calendar
           viewDate={viewDate}
           setViewData={setViewDate}

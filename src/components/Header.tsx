@@ -10,12 +10,12 @@ const Header = ({
   return (
     <div
       style={{
-        padding: "10px 20px",
+        padding: "0px 20px",
         // margin: "0 50px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        height: "7%",
+        height: "100%",
       }}
     >
       <div>
