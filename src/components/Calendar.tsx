@@ -68,7 +68,7 @@ const Calendar = ({
       {isCalendarView && (
         <div
           style={{
-            padding: "50px 30px 10px 20px",
+            padding: "50px 33px 10px 25px",
             display: "flex",
             justifyContent: "space-between",
             minWidth: "190px",
