@@ -5,8 +5,27 @@ const EventDialog = ({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) => {
-  const onSubmit = (e: React.SyntheticEvent) => {
+  interface CustomElements extends HTMLFormControlsCollection {
+    name: HTMLInputElement;
+    from: HTMLInputElement;
+    to: HTMLInputElement;
+  }
+
+  interface CustomForm extends HTMLFormElement {
+    readonly elements: CustomElements;
+  }
+
+  const onSubmit = (e: React.FormEvent<CustomForm>) => {
     e.preventDefault();
+    const target = e.currentTarget.elements;
+
+    const data = {
+      name: target.name.value,
+      from: target.from.value,
+      to: target.to.value,
+    };
+
+    console.log(data);
   };
   if (!isOpen) return <></>;
   return (
@@ -49,16 +68,20 @@ const EventDialog = ({
           <div style={{ padding: 20 }}>
             <form onSubmit={onSubmit}>
               <label style={{ marginRight: "10px" }}>Event Name</label>
-              <input style={{ padding: "6px 9px" }} placeholder="Ex. Holiday" />
+              <input
+                style={{ padding: "6px 9px" }}
+                id="name"
+                placeholder="Ex. Holiday"
+              />
               <br />
               <br />
               <label style={{ marginRight: "10px" }}>From</label>
-              <input style={{ padding: "5px 8px" }} type="date" />
+              <input style={{ padding: "5px 8px" }} id="from" type="date" />
 
               <label style={{ marginLeft: "8px", marginRight: "10px" }}>
                 To
               </label>
-              <input style={{ padding: "5px 8px" }} type="date" />
+              <input style={{ padding: "5px 8px" }} id="to" type="date" />
               <div
                 style={{
                   display: "flex",
