@@ -1,13 +1,25 @@
+interface Task {
+  id: string;
+  name: string;
+  color: number[];
+  from: string;
+  to: string;
+}
+
 const EventDialog = ({
   isOpen,
   setIsOpen,
   //   viewDate,
   clickedDate,
+  events,
+  setEvents,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   viewDate: Date;
   clickedDate: string;
+  events: Task[];
+  setEvents: (event: Task[]) => void;
 }) => {
   interface CustomElements extends HTMLFormControlsCollection {
     name: HTMLInputElement;
@@ -24,15 +36,20 @@ const EventDialog = ({
     const target = e.currentTarget.elements;
 
     const data = {
+      id: new Date().getTime().toString(),
       name: target.name.value,
+      color: [Math.random() * 256, Math.random() * 256, Math.random() * 256],
       from: target.from.value,
       to: target.to.value,
     };
     if (!data.name) return;
+    if (new Date(data.from) > new Date(data.to))
+      return alert("Start date should be prior to end date!");
 
-    alert("Saved to Database!");
+    // alert("Saved to Database!");
+    setEvents([...events, data]);
 
-    console.log(data);
+    // console.log(data);
 
     setIsOpen(false);
   };

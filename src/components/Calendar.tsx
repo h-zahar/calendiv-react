@@ -68,6 +68,17 @@ const Calendar = ({
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [clickedDate, setClickedDate] = useState("");
 
+  interface Task {
+    id: string;
+    color: number[];
+    name: string;
+    from: string;
+    to: string;
+  }
+
+  const [events, setEvents] = useState<Task[]>([]);
+  console.log(events);
+
   return (
     <div
       style={
@@ -172,7 +183,14 @@ const Calendar = ({
                     }
               }
             >
-              <div>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 {i < 7 && (
                   <div
                     style={{
@@ -210,12 +228,16 @@ const Calendar = ({
                       ? "date-div sm-date"
                       : "date-div lg-date"
                   }
-                  onClick={(
-                    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-                  ) => {
-                    setIsEventDialogOpen(true);
-                    setClickedDate((e.currentTarget as Element).id);
-                  }}
+                  onClick={
+                    !isCalendarView
+                      ? (
+                          e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                        ) => {
+                          setIsEventDialogOpen(true);
+                          setClickedDate((e.currentTarget as Element).id);
+                        }
+                      : () => {}
+                  }
                 >
                   {getDate(new Date(t))}
                   {!isCalendarView &&
@@ -235,6 +257,37 @@ const Calendar = ({
                           "MMM"
                         ))}
                 </button>
+                {!isCalendarView &&
+                  events
+                    .filter(
+                      (e) =>
+                        new Date(t) >= new Date(e.from) &&
+                        new Date(t) <= new Date(e.to)
+                    )
+                    .map((e) => {
+                      return (
+                        <div
+                          style={{
+                            // height: "10px",
+                            padding: "5px 0px",
+                            width: "100%",
+                            marginTop: "10px",
+                            background: `rgb(${e.color[0]}, ${e.color[1]}, ${e.color[2]})`,
+                            color:
+                              e.color[0] > 230 ||
+                              e.color[1] > 230 ||
+                              e.color[2] > 230
+                                ? "black"
+                                : "white",
+                            border: `0.5px solid rgb(${e.color[0]}, ${e.color[1]}, ${e.color[2]})`,
+                          }}
+                        >
+                          {e.name.toString().length > 15
+                            ? e.name.toString().slice(0, 15) + "..."
+                            : e.name.toString()}
+                        </div>
+                      );
+                    })}
               </div>
             </div>
           );
@@ -245,6 +298,8 @@ const Calendar = ({
         setIsOpen={setIsEventDialogOpen}
         viewDate={viewDate}
         clickedDate={clickedDate}
+        events={events}
+        setEvents={setEvents}
       />
     </div>
   );
