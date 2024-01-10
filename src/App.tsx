@@ -10,7 +10,7 @@ function App() {
       <div style={{ height: "12%" }}>
         <Header viewDate={viewDate} setViewData={setViewDate} />
       </div>
-      <div style={{ display: "flex", width: "100%", height: "88%" }}>
+      <div style={{ display: "flex", width: "100%", height: "87.8%" }}>
         <Calendar
           viewDate={viewDate}
           setViewData={setViewDate}
