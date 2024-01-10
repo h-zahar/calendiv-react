@@ -77,7 +77,7 @@ const Calendar = ({
   }
 
   const [events, setEvents] = useState<Task[]>([]);
-  console.log(events);
+  // console.log(events);
 
   return (
     <div
