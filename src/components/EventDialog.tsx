@@ -22,7 +22,9 @@ const EventDialog = ({
       }}
     >
       <div style={{ position: "relative", top: "30%", left: "30%" }}>
-        <div style={{ background: "white", width: "460px" }}>
+        <div
+          style={{ background: "white", width: "460px", borderRadius: "5px" }}
+        >
           <div
             style={{
               display: "flex",
