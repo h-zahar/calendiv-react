@@ -28,8 +28,13 @@ const EventDialog = ({
       from: target.from.value,
       to: target.to.value,
     };
+    if (!data.name) return;
+
+    alert("Saved to Database!");
 
     console.log(data);
+
+    setIsOpen(false);
   };
 
   if (!isOpen) return <></>;
@@ -78,6 +83,7 @@ const EventDialog = ({
                   style={{ padding: "6px 9px" }}
                   id="name"
                   placeholder="Ex. Holiday"
+                  required={true}
                 />
                 <br />
                 <br />

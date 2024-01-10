@@ -37,7 +37,9 @@ const Calendar = ({
           (getMonth(viewDate) + 1).toString().length === 1
             ? "0" + (getMonth(viewDate) + 1)
             : getMonth(viewDate) + 1
-        }-${t * i + 1}`
+        }-${
+          (t * i + 1).toString().length === 1 ? "0" + (t * i + 1) : t * i + 1
+        }`
     );
 
   const numOfPrevDays = Array(getDay(startOfMonth(viewDate))).fill(1);
@@ -149,6 +151,7 @@ const Calendar = ({
         {dates.map((t, i) => {
           return (
             <div
+              key={i}
               style={
                 isCalendarView
                   ? {
