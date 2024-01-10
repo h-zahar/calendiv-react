@@ -1,3 +1,15 @@
+.sm-date {
+  font-size: 10px;
+}
+
+.lg-date {
+  font-size: 11px;
+}
+
+.date-div {
+  background: transparent;
+}
+
 .date-div:hover {
   background: #e8f0fe;
 }

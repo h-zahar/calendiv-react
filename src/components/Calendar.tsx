@@ -12,6 +12,8 @@ import {
   subDays,
   subMonths,
 } from "date-fns";
+import { useState } from "react";
+import EventDialog from "./EventDialog";
 
 const Calendar = ({
   viewDate,
@@ -50,6 +52,8 @@ const Calendar = ({
   // console.log(getDay(startOfMonth(new Date())));
   // console.log(getDate(subDays(startOfMonth(new Date()), 5)));
   // console.log(startOfMonth(new Date()));
+
+  const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
 
   return (
     <div
@@ -167,7 +171,7 @@ const Calendar = ({
                     {isCalendarView ? days[i][0] : days[i]}
                   </div>
                 )}
-                <div
+                <button
                   style={{
                     width: isCalendarView ? 25 : 35,
                     height: isCalendarView ? 25 : 35,
@@ -176,15 +180,22 @@ const Calendar = ({
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    border: "none",
+                    padding: 0,
                   }}
                   className={
                     getMonth(new Date()) === getMonth(viewDate) &&
                     t === getDate(new Date()) &&
                     i > prevRange[0] &&
                     i < nextRange[0]
-                      ? "curr-date-div"
-                      : "date-div"
+                      ? isCalendarView
+                        ? "curr-date-div sm-date"
+                        : "curr-date-div lg-date"
+                      : isCalendarView
+                      ? "date-div sm-date"
+                      : "date-div lg-date"
                   }
+                  onClick={() => setIsEventDialogOpen(true)}
                 >
                   {t}
                   {!isCalendarView &&
@@ -203,12 +214,16 @@ const Calendar = ({
                           ),
                           "MMM"
                         ))}
-                </div>
+                </button>
               </div>
             </div>
           );
         })}
       </div>
+      <EventDialog
+        isOpen={isEventDialogOpen}
+        setIsOpen={setIsEventDialogOpen}
+      />
     </div>
   );
 };
