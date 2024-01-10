@@ -32,7 +32,9 @@ const EventDialog = ({
               padding: "20px",
             }}
           >
-            <div>Add Event</div>
+            <span>
+              <strong>Add Event</strong>
+            </span>
             <button
               onClick={() => setIsOpen(false)}
               style={{
