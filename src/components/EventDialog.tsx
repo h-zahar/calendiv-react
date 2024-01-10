@@ -1,9 +1,13 @@
 const EventDialog = ({
   isOpen,
   setIsOpen,
+  //   viewDate,
+  clickedDate,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  viewDate: Date;
+  clickedDate: string;
 }) => {
   interface CustomElements extends HTMLFormControlsCollection {
     name: HTMLInputElement;
@@ -27,6 +31,7 @@ const EventDialog = ({
 
     console.log(data);
   };
+
   if (!isOpen) return <></>;
   return (
     <div
@@ -66,44 +71,58 @@ const EventDialog = ({
             </button>
           </div>
           <div style={{ padding: 20 }}>
-            <form onSubmit={onSubmit}>
-              <label style={{ marginRight: "10px" }}>Event Name</label>
-              <input
-                style={{ padding: "6px 9px" }}
-                id="name"
-                placeholder="Ex. Holiday"
-              />
-              <br />
-              <br />
-              <label style={{ marginRight: "10px" }}>From</label>
-              <input style={{ padding: "5px 8px" }} id="from" type="date" />
+            {clickedDate ? (
+              <form onSubmit={onSubmit}>
+                <label style={{ marginRight: "10px" }}>Event Name</label>
+                <input
+                  style={{ padding: "6px 9px" }}
+                  id="name"
+                  placeholder="Ex. Holiday"
+                />
+                <br />
+                <br />
+                <label style={{ marginRight: "10px" }}>From</label>
+                <input
+                  style={{ padding: "5px 8px" }}
+                  id="from"
+                  type="date"
+                  defaultValue={clickedDate}
+                />
 
-              <label style={{ marginLeft: "8px", marginRight: "10px" }}>
-                To
-              </label>
-              <input style={{ padding: "5px 8px" }} id="to" type="date" />
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "40px",
-                }}
-              >
-                <button
-                  type="submit"
+                <label style={{ marginLeft: "8px", marginRight: "10px" }}>
+                  To
+                </label>
+                <input
+                  style={{ padding: "5px 8px" }}
+                  id="to"
+                  type="date"
+                  defaultValue={clickedDate}
+                />
+                <div
                   style={{
-                    background: "green",
-                    padding: "8px 12px",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "20px",
-                    cursor: "pointer",
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "40px",
                   }}
                 >
-                  Create
-                </button>
-              </div>
-            </form>
+                  <button
+                    type="submit"
+                    style={{
+                      background: "green",
+                      padding: "8px 12px",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "20px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Create
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

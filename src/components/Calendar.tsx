@@ -31,11 +31,21 @@ const Calendar = ({
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const dates = Array(getDaysInMonth(viewDate))
     .fill(1)
-    .map((t, i) => t * i + 1);
+    .map(
+      (t, i) =>
+        `${getYear(new Date())}-${
+          (getMonth(viewDate) + 1).toString().length === 1
+            ? "0" + (getMonth(viewDate) + 1)
+            : getMonth(viewDate) + 1
+        }-${t * i + 1}`
+    );
 
   const numOfPrevDays = Array(getDay(startOfMonth(viewDate))).fill(1);
   const prevDays = numOfPrevDays.map((d, i) =>
-    getDate(subDays(startOfMonth(viewDate), d * (numOfPrevDays.length - i)))
+    format(
+      subDays(startOfMonth(viewDate), d * (numOfPrevDays.length - i)),
+      "yyyy-MM-dd"
+    )
   );
   const prevRange = [0, prevDays.length - 1];
   dates.unshift(...prevDays);
@@ -43,7 +53,7 @@ const Calendar = ({
   // if (arr.length < 35) {
   const numOfNextDays = Array(6 - getDay(endOfMonth(viewDate))).fill(1);
   const nextDays = numOfNextDays.map((d, i) =>
-    getDate(addDays(startOfMonth(viewDate), d * i))
+    format(addDays(startOfMonth(viewDate), d * i), "yyyy-MM-dd")
   );
   // }
   const nextRange = [dates.length, dates.length + nextDays.length];
@@ -54,6 +64,7 @@ const Calendar = ({
   // console.log(startOfMonth(new Date()));
 
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
+  const [clickedDate, setClickedDate] = useState("");
 
   return (
     <div
@@ -172,6 +183,7 @@ const Calendar = ({
                   </div>
                 )}
                 <button
+                  id={t}
                   style={{
                     width: isCalendarView ? 25 : 35,
                     height: isCalendarView ? 25 : 35,
@@ -185,8 +197,8 @@ const Calendar = ({
                   }}
                   className={
                     getMonth(new Date()) === getMonth(viewDate) &&
-                    t === getDate(new Date()) &&
-                    i > prevRange[0] &&
+                    getDate(new Date(t)) === getDate(new Date()) &&
+                    i > prevRange[1] &&
                     i < nextRange[0]
                       ? isCalendarView
                         ? "curr-date-div sm-date"
@@ -195,11 +207,16 @@ const Calendar = ({
                       ? "date-div sm-date"
                       : "date-div lg-date"
                   }
-                  onClick={() => setIsEventDialogOpen(true)}
+                  onClick={(
+                    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                  ) => {
+                    setIsEventDialogOpen(true);
+                    setClickedDate((e.currentTarget as Element).id);
+                  }}
                 >
-                  {t}
+                  {getDate(new Date(t))}
                   {!isCalendarView &&
-                    t === 1 &&
+                    getDate(new Date(t)) === 1 &&
                     (i < 7
                       ? " " +
                         format(
@@ -223,6 +240,8 @@ const Calendar = ({
       <EventDialog
         isOpen={isEventDialogOpen}
         setIsOpen={setIsEventDialogOpen}
+        viewDate={viewDate}
+        clickedDate={clickedDate}
       />
     </div>
   );
