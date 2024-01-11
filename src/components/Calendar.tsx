@@ -57,7 +57,7 @@ const Calendar = ({
   // if (arr.length < 35) {
   const numOfNextDays = Array(6 - getDay(endOfMonth(viewDate))).fill(1);
   const nextDays = numOfNextDays.map((d, i) =>
-    format(addDays(endOfMonth(viewDate), d * i), "yyyy-MM-dd")
+    format(addDays(endOfMonth(viewDate), d * (i + 1)), "yyyy-MM-dd")
   );
   // }
   const nextRange = [dates.length, dates.length + nextDays.length];
