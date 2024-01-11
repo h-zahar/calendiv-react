@@ -92,7 +92,7 @@ const Header = ({
             {/* </p> */}
           </button>
 
-          <div>
+          <div style={{ marginLeft: 25 }}>
             <span style={{ color: "rgb(60, 64, 67)", fontWeight: "400" }}>
               {format(viewDate, "MMMM yyyy")}
             </span>
