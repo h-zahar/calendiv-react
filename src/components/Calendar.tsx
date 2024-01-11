@@ -35,7 +35,7 @@ const Calendar = ({
     .fill(1)
     .map(
       (t, i) =>
-        `${getYear(new Date())}-${
+        `${getYear(viewDate)}-${
           (getMonth(viewDate) + 1).toString().length === 1
             ? "0" + (getMonth(viewDate) + 1)
             : getMonth(viewDate) + 1
@@ -80,6 +80,7 @@ const Calendar = ({
 
   const [events, setEvents] = useState<Task[]>([]);
   // console.log(events);
+  // console.log(dates);
 
   return (
     <div
