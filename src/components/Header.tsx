@@ -21,7 +21,15 @@ const Header = ({
       }}
     >
       <div style={{ minWidth: 175 }}>
-        <h2 style={{ textAlign: "center" }}>CalenDiv</h2>
+        <h2
+          style={{
+            textAlign: "center",
+            fontWeight: "lighter",
+            color: "rgb(60,64,67)",
+          }}
+        >
+          CalenDiv
+        </h2>
       </div>
       <div style={{ flex: 1, marginLeft: 20 }}>
         <div
@@ -38,9 +46,10 @@ const Header = ({
           >
             <p
               style={{
-                padding: "10px",
-                border: "1px solid black",
+                padding: "9px",
+                border: "1px solid rgba(0, 0, 0, 0.3)",
                 borderRadius: "5px",
+                fontSize: "0.875rem",
               }}
             >
               Today
@@ -83,7 +92,11 @@ const Header = ({
             {/* </p> */}
           </button>
 
-          <div>{format(viewDate, "MMMM yyyy")} </div>
+          <div>
+            <span style={{ color: "rgb(60, 64, 67)", fontWeight: "400" }}>
+              {format(viewDate, "MMMM yyyy")}
+            </span>
+          </div>
         </div>
       </div>
       <div></div>
