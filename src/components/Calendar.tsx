@@ -274,9 +274,7 @@ const Calendar = ({
                             marginTop: "10px",
                             background: `rgb(${e.color[0]}, ${e.color[1]}, ${e.color[2]})`,
                             color:
-                              e.color[0] > 230 ||
-                              e.color[1] > 230 ||
-                              e.color[2] > 230
+                              e.color.filter((c) => c >= 230).length > 1
                                 ? "black"
                                 : "white",
                             border: `0.5px solid rgb(${e.color[0]}, ${e.color[1]}, ${e.color[2]})`,
