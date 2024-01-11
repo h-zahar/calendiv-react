@@ -217,6 +217,7 @@ const Calendar = ({
                     alignItems: "center",
                     border: "none",
                     padding: 0,
+                    opacity: i > prevRange[1] && i < nextRange[0] ? 1 : 0.5,
                   }}
                   className={
                     getMonth(new Date()) === getMonth(viewDate) &&
