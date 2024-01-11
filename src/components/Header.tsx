@@ -1,4 +1,6 @@
 import { addMonths, format, subMonths } from "date-fns";
+import PrevIcon from "./PrevIcon";
+import NextIcon from "./NextIcon";
 
 const Header = ({
   viewDate,
@@ -18,8 +20,8 @@ const Header = ({
         height: "100%",
       }}
     >
-      <div>
-        <h2>CalenDiv</h2>
+      <div style={{ minWidth: 175 }}>
+        <h2 style={{ textAlign: "center" }}>CalenDiv</h2>
       </div>
       <div style={{ flex: 1, marginLeft: 20 }}>
         <div
@@ -31,6 +33,7 @@ const Header = ({
               border: "none",
               background: "transparent",
               cursor: "pointer",
+              marginRight: 20,
             }}
           >
             <p
@@ -43,7 +46,6 @@ const Header = ({
               Today
             </p>
           </button>
-
           <button
             onClick={() => setViewData(subMonths(viewDate, 1))}
             style={{
@@ -59,10 +61,9 @@ const Header = ({
                 borderRadius: "5px",
               }}
             > */}
-            {"<"}
+            <PrevIcon />
             {/* </p> */}
           </button>
-
           <button
             onClick={() => setViewData(addMonths(viewDate, 1))}
             style={{
@@ -78,11 +79,11 @@ const Header = ({
                 borderRadius: "5px",
               }}
             > */}
-            {">"}
+            <NextIcon />
             {/* </p> */}
           </button>
 
-          <div>{format(viewDate, "MMMM yyyy")}</div>
+          <div>{format(viewDate, "MMMM yyyy")} </div>
         </div>
       </div>
       <div></div>

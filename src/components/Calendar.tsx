@@ -14,6 +14,8 @@ import {
 } from "date-fns";
 import { useState } from "react";
 import EventDialog from "./EventDialog";
+import PrevIcon from "./PrevIcon";
+import NextIcon from "./NextIcon";
 
 const Calendar = ({
   viewDate,
@@ -119,7 +121,7 @@ const Calendar = ({
                     borderRadius: "5px",
                   }}
                 > */}
-              {"<"}
+              <PrevIcon />
               {/* </p> */}
             </button>
 
@@ -131,7 +133,7 @@ const Calendar = ({
                 cursor: "pointer",
               }}
             >
-              {">"}
+              <NextIcon />
             </button>
           </div>
         </div>
